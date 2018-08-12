@@ -1,13 +1,27 @@
 #!/usr/binp/python
 import os
+import time
 from tkinter import *
 import tkinter.messagebox
 import xlrd
 from xlutils.copy import copy
 import xlwt
 from tkinter import messagebox
+from tkinter.ttk import Progressbar
+from tkinter import ttk
 
-def enter(nameHub,root_1,top_frame,bottom_frame,entry_name,entry_enroll,entry_mob,entry_email,entry_branch):
+#.......MOVING BAR........#
+
+def baar(a,bar):
+	for i in range(0,101,10):
+		bar['value']=i
+		time.sleep(0.05)
+		a.update_idletasks()
+
+
+#........FOR SUBMITTING ENTRIES........#
+
+def enter(nameHub,root_1,top_frame,bottom_frame,bar,entry_name,entry_enroll,entry_mob,entry_email,entry_branch):
 	a=str(entry_name.get())
 	b=str(entry_enroll.get())
 	c=str(entry_mob.get())
@@ -55,9 +69,10 @@ def enter(nameHub,root_1,top_frame,bottom_frame,entry_name,entry_enroll,entry_mo
 		loc = ('Knuth.xls')
 		hub = 'Knuth.xls'
 	wb.save(hub)
+	baar(bottom_frame,bar)
 	recur(a,root_1,top_frame,bottom_frame)
 
-
+#..........FOR RESET BUTTON.........#
 def recur(a,root_1,top_frame,bottom_frame):
 	label_name=Label(top_frame,text="Name")
 	label_enroll=Label(top_frame,text="Enroll. No.")
@@ -83,24 +98,27 @@ def recur(a,root_1,top_frame,bottom_frame):
 	entry_email.grid(row=6,column=1)
 	entry_branch.grid(row=8,column=1)
 
-	submit_button = Button(bottom_frame,text="SUBMIT", fg="blue",command=lambda: enter(a,root_1,top_frame,bottom_frame,entry_name,entry_enroll,entry_mob,entry_email,entry_branch))
+	style = ttk.Style()
+	style.theme_use('default')
+	style.configure("blue.Horizontal.TProgressbar", background='blue')
+	bar = Progressbar(bottom_frame, length=100, style='blue.Horizontal.TProgressbar')
+
+	submit_button = Button(bottom_frame,text="SUBMIT", fg="blue",command=lambda: enter(a,root_1,top_frame,bottom_frame,bar,entry_name,entry_enroll,entry_mob,entry_email,entry_branch))
 	reset_button = Button(bottom_frame,text="RESET", fg="blue",command=lambda:recur(a,root_1,top_frame,bottom_frame))
 
 	submit_button.grid(row=10,column=0,sticky="E")
 	reset_button.grid(row=10,column=1)
 
+	bar.grid(row=11,columnspan=2)
 
-
-def submit(a,root_1,top_frame,bottom_frame):
-	print(a)
-	recur(a,root_1,top_frame,bottom_frame)
-
+#...............MAIN WINDOW................#
 
 def fun(a,root_first):
 	root_first.destroy()
 	#root.destroy()
 	root_1 = Tk()
 	root_1.title(a)
+
 
 	top_frame = Frame(root_1)
 	top_frame.pack()
@@ -138,16 +156,23 @@ def fun(a,root_first):
 	email_1 = entry_email.get()
 	branch_1 = entry_branch.get()
 
+	####>>>>>>BAR CODE<<<<<<####
+	style = ttk.Style()
+	style.theme_use('default')
+	style.configure("blue.Horizontal.TProgressbar", background='blue')
+	bar = Progressbar(bottom_frame, length=100, style='blue.Horizontal.TProgressbar')
 
-	#print(name)
-	#print(enroll_no)
 
-	submit_button = Button(bottom_frame,text="SUBMIT",command=lambda: enter(a,root_1,top_frame,bottom_frame,entry_name,entry_enroll,entry_mob,entry_email,entry_branch),fg="blue")
+	submit_button = Button(bottom_frame,text="SUBMIT",command=lambda: enter(a,root_1,top_frame,bottom_frame,bar,entry_name,entry_enroll,entry_mob,entry_email,entry_branch),fg="blue")
 	reset_button = Button(bottom_frame,text="RESET",command=lambda: recur(a,root_1,top_frame,bottom_frame), fg="blue")
 
 	submit_button.grid(row=10,column=0,sticky="E")
 	reset_button.grid(row=10,column=1)
 
+
+	bar.grid(row=11,columnspan=2)
+
+#.......FOR SEARCHING......#
 
 def searchAnything(a,root_first,entry):
 	ent = entry.get()
@@ -216,6 +241,7 @@ def searchAnything(a,root_first,entry):
 		print("Not Found")
 		messagebox.showwarning(a,"NOT FOUND!\n {:: _ ::}")
 
+#.........SEARCH FUNCTION..........#
 def search(a,root_first):
 	root_first.destroy()
 	root_search = Tk()
@@ -227,7 +253,7 @@ def search(a,root_first):
 	enter.grid(row=0,column=1)
 	buttonSearch.grid(row=1,column=1,sticky="W")
 
-
+#.........SECOND WINDOW.........#
 def first(a):
 	root.destroy()
 	root_first = Tk()
@@ -244,6 +270,9 @@ def first(a):
 	but2.grid(row=0,column=1,sticky=W+E+N+S)
 
 
+########     |\/\      \    |       #######
+########    |    \ AIN  \/\/ INDOW  #######
+########                            #######
 root = Tk()
 root.title("JIIT")
 
