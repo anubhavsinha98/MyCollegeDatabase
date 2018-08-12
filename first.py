@@ -10,8 +10,8 @@ from tkinter import messagebox
 def enter(nameHub,root_1,top_frame,bottom_frame,entry_name,entry_enroll,entry_mob,entry_email,entry_branch):
 	a=str(entry_name.get())
 	b=str(entry_enroll.get())
-	c=str(entry_enroll.get())
-	d=str(entry_enroll.get())
+	c=str(entry_mob.get())
+	d=str(entry_email.get())
 	e=str(entry_branch.get())
 	if nameHub=='IEEE':
 		loc = ('IEEE.xls')
