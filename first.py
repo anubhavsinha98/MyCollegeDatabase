@@ -5,14 +5,14 @@ import tkinter.messagebox
 import xlrd
 from xlutils.copy import copy
 import xlwt
-
+from tkinter import messagebox
 
 def enter(nameHub,root_1,top_frame,bottom_frame,entry_name,entry_enroll,entry_mob,entry_email,entry_branch):
-	a=entry_name.get()
-	b=entry_enroll.get()
-	c=entry_enroll.get()
-	d=entry_enroll.get()
-	e=entry_branch.get()
+	a=str(entry_name.get())
+	b=str(entry_enroll.get())
+	c=str(entry_enroll.get())
+	d=str(entry_enroll.get())
+	e=str(entry_branch.get())
 	if nameHub=='IEEE':
 		loc = ('IEEE.xls')
 	elif nameHub=='CICE':
@@ -148,6 +148,86 @@ def fun(a,root_first):
 	submit_button.grid(row=10,column=0,sticky="E")
 	reset_button.grid(row=10,column=1)
 
+
+def searchAnything(a,root_first,entry):
+	ent = entry.get()
+	if a =='IEEE':
+		loc = ('IEEE.xls')
+	elif a =='CICE':
+		loc = ('CICE.xls')
+	elif a =='UCR':
+		loc = ('UCR.xls')
+	elif a =='Thespian Cirlce':
+		loc = ('Thespian Circle')
+	elif a =='Graphicas':
+		loc = ('Graphicas.xls')
+	else:
+		loc = ('Knuth.xls')
+	wb = xlrd.open_workbook(loc)
+	sheet = wb.sheet_by_index(0)
+	rows = sheet.nrows
+	flag=0
+	for i in range(rows):
+		if sheet.cell_value(i,0)==ent:
+			print(sheet.cell_value(i,0))
+			print(sheet.cell_value(i,1))
+			print(sheet.cell_value(i,2))
+			print(sheet.cell_value(i,3))
+			print(sheet.cell_value(i,4))
+			messagebox.showinfo(a,sheet.cell_value(i,0)+"\n"+sheet.cell_value(i,1)+"\n"+sheet.cell_value(i,2)+"\n"+sheet.cell_value(i,3)+"\n"+sheet.cell_value(i,4))
+			flag=1
+		elif sheet.cell_value(i,1)==ent:
+			print(sheet.cell_value(i,0))
+			print(sheet.cell_value(i,1))
+			print(sheet.cell_value(i,2))
+			print(sheet.cell_value(i,3))
+			print(sheet.cell_value(i,4))
+			flag=1
+			messagebox.showinfo(a,sheet.cell_value(i,0)+"\n"+sheet.cell_value(i,1)+"\n"+sheet.cell_value(i,2)+"\n"+sheet.cell_value(i,3)+"\n"+sheet.cell_value(i,4))
+			break
+		elif sheet.cell_value(i,2)==ent:
+			print(sheet.cell_value(i,0))
+			print(sheet.cell_value(i,1))
+			print(sheet.cell_value(i,2))
+			print(sheet.cell_value(i,3))
+			print(sheet.cell_value(i,4))
+			flag=1
+			messagebox.showinfo(a,sheet.cell_value(i,0)+"\n"+sheet.cell_value(i,1)+"\n"+sheet.cell_value(i,2)+"\n"+sheet.cell_value(i,3)+"\n"+sheet.cell_value(i,4))
+			break
+		elif sheet.cell_value(i,3)==ent:
+			print(sheet.cell_value(i,0))
+			print(sheet.cell_value(i,1))
+			print(sheet.cell_value(i,2))
+			print(sheet.cell_value(i,3))
+			print(sheet.cell_value(i,4))
+			flag=1
+			messagebox.showinfo(a,sheet.cell_value(i,0)+"\n"+sheet.cell_value(i,1)+"\n"+sheet.cell_value(i,2)+"\n"+sheet.cell_value(i,3)+"\n"+sheet.cell_value(i,4))
+			break
+		elif sheet.cell_value(i,4)==ent:
+			print(sheet.cell_value(i,0))
+			print(sheet.cell_value(i,1))
+			print(sheet.cell_value(i,2))
+			print(sheet.cell_value(i,3))
+			print(sheet.cell_value(i,4))
+			flag=1
+			messagebox.showinfo(a,sheet.cell_value(i,0)+"\n"+sheet.cell_value(i,1)+"\n"+sheet.cell_value(i,2)+"\n"+sheet.cell_value(i,3)+"\n"+sheet.cell_value(i,4))
+			break
+	if flag==0:
+		print("Not Found")
+		messagebox.showwarning(a,"NOT FOUND!\n {:: _ ::}")
+
+def search(a,root_first):
+	root_first.destroy()
+	root_search = Tk()
+	root_search.title(a)
+	label = Label(root_search,text="Enter Anything")
+	enter = Entry(root_search)
+	buttonSearch =  Button(root_search,text="Search",command=lambda: searchAnything(a,root_first,enter))
+	label.grid(row=0,column=0,sticky="E")
+	enter.grid(row=0,column=1)
+	buttonSearch.grid(row=1,column=1,sticky="W")
+
+
 def first(a):
 	root.destroy()
 	root_first = Tk()
@@ -158,8 +238,8 @@ def first(a):
 	bottomFrame.pack()
 	label = Label(topFrame,text="Welcome To "+a,font=("Algerian", 36),fg="Green",bg="White")
 	label.pack()
-	but1 = Button(bottomFrame,text="Submit Entries",command=lambda: fun(a,root_first))
-	but2 = Button(bottomFrame,text="Search Entry")
+	but1 = Button(bottomFrame,text="Submit Entries",command = lambda: fun(a,root_first))
+	but2 = Button(bottomFrame,text="Search Entry",command = lambda: search(a,root_first))
 	but1.grid(row=0,column=0,sticky=W+E+N+S)
 	but2.grid(row=0,column=1,sticky=W+E+N+S)
 
