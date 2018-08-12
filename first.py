@@ -56,7 +56,7 @@ def enter(nameHub,root_1,top_frame,bottom_frame,entry_name,entry_enroll,entry_mo
 		hub = 'Knuth.xls'
 	wb.save(hub)
 	recur(a,root_1,top_frame,bottom_frame)
-	
+
 
 def recur(a,root_1,top_frame,bottom_frame):
 	label_name=Label(top_frame,text="Name")
@@ -70,22 +70,22 @@ def recur(a,root_1,top_frame,bottom_frame):
 	entry_mob = Entry(top_frame)
 	entry_email = Entry(top_frame)
 	entry_branch = Entry(top_frame)
-	
+
 	label_name.grid(row=0,column=0,sticky="E")
-	label_enroll.grid(row=2,column=0,sticky="E")	
+	label_enroll.grid(row=2,column=0,sticky="E")
 	label_mob.grid(row=4,column=0,sticky="E")
 	label_email.grid(row=6,column=0,sticky="E")
 	label_branch.grid(row=8,column=0,sticky="E")
-	
+
 	entry_name.grid(row=0,column=1)
 	entry_enroll.grid(row=2,column=1)
 	entry_mob.grid(row=4,column=1)
 	entry_email.grid(row=6,column=1)
 	entry_branch.grid(row=8,column=1)
-	
+
 	submit_button = Button(bottom_frame,text="SUBMIT", fg="blue",command=lambda: enter(a,root_1,top_frame,bottom_frame,entry_name,entry_enroll,entry_mob,entry_email,entry_branch))
 	reset_button = Button(bottom_frame,text="RESET", fg="blue",command=lambda:recur(a,root_1,top_frame,bottom_frame))
-	
+
 	submit_button.grid(row=10,column=0,sticky="E")
 	reset_button.grid(row=10,column=1)
 
@@ -96,8 +96,9 @@ def submit(a,root_1,top_frame,bottom_frame):
 	recur(a,root_1,top_frame,bottom_frame)
 
 
-def fun(a):
-	root.destroy()
+def fun(a,root_first):
+	root_first.destroy()
+	#root.destroy()
 	root_1 = Tk()
 	root_1.title(a)
 
@@ -120,33 +121,47 @@ def fun(a):
 	entry_branch = Entry(top_frame)
 
 	label_name.grid(row=0,column=0,sticky="E")
-	label_enroll.grid(row=2,column=0,sticky="E")	
+	label_enroll.grid(row=2,column=0,sticky="E")
 	label_mob.grid(row=4,column=0,sticky="E")
 	label_email.grid(row=6,column=0,sticky="E")
 	label_branch.grid(row=8,column=0,sticky="E")
-	
+
 	entry_name.grid(row=0,column=1)
 	entry_enroll.grid(row=2,column=1)
 	entry_mob.grid(row=4,column=1)
 	entry_email.grid(row=6,column=1)
 	entry_branch.grid(row=8,column=1)
-	
+
 	name_1 = entry_name.get()
 	enroll_1 = entry_enroll.get()
 	mob_1 = entry_mob.get()
 	email_1 = entry_email.get()
 	branch_1 = entry_branch.get()
 
-	
+
 	#print(name)
-	#print(enroll_no) 
-	
+	#print(enroll_no)
+
 	submit_button = Button(bottom_frame,text="SUBMIT",command=lambda: enter(a,root_1,top_frame,bottom_frame,entry_name,entry_enroll,entry_mob,entry_email,entry_branch),fg="blue")
 	reset_button = Button(bottom_frame,text="RESET",command=lambda: recur(a,root_1,top_frame,bottom_frame), fg="blue")
-	
+
 	submit_button.grid(row=10,column=0,sticky="E")
 	reset_button.grid(row=10,column=1)
-	
+
+def first(a):
+	root.destroy()
+	root_first = Tk()
+	root_first.title(a)
+	topFrame = Frame(root_first)
+	topFrame.pack()
+	bottomFrame = Frame(root_first)
+	bottomFrame.pack()
+	label = Label(topFrame,text="Welcome To "+a,font=("Algerian", 36),fg="Green",bg="White")
+	label.pack()
+	but1 = Button(bottomFrame,text="Submit Entries",command=lambda: fun(a,root_first))
+	but2 = Button(bottomFrame,text="Search Entry")
+	but1.grid(row=0,column=0,sticky=W+E+N+S)
+	but2.grid(row=0,column=1,sticky=W+E+N+S)
 
 
 root = Tk()
@@ -176,12 +191,12 @@ label2 = Label(midFrame,text="\nClick On The Hub\n",font=("Courier", 20),fg="gre
 label2.pack()
 
 #Buttons
-b1=Button(bottomFrame,text="Robotics",fg="red",command=lambda: fun("UCR"),height=3,width=10)
-b2=Button(bottomFrame,text="CICE",fg="red",command=lambda: fun("CICE"),height=3,width=10)
-b3=Button(bottomFrame,text="IEEE",fg="red",command=lambda: fun("IEEE"),height=3,width=10)
-b4=Button(bottomFrame,text="Graphicas",fg="red",command=lambda: fun("Graphicas"),height=3,width=10)
-b5=Button(bottomFrame,text="Thespian Cirle",fg="red",command=lambda: fun("Thespian Circle"),height=3,width=10)
-b6=Button(bottomFrame,text="Knuth",fg="red",command=lambda: fun("Knuth"),height=3,width=10)
+b1=Button(bottomFrame,text="Robotics",fg="red",command=lambda: first("UCR"),height=3,width=10)
+b2=Button(bottomFrame,text="CICE",fg="red",command=lambda: first("CICE"),height=3,width=10)
+b3=Button(bottomFrame,text="IEEE",fg="red",command=lambda: first("IEEE"),height=3,width=10)
+b4=Button(bottomFrame,text="Graphicas",fg="red",command=lambda: first("Graphicas"),height=3,width=10)
+b5=Button(bottomFrame,text="Thespian Cirle",fg="red",command=lambda: first("Thespian Circle"),height=3,width=10)
+b6=Button(bottomFrame,text="Knuth",fg="red",command=lambda: first("Knuth"),height=3,width=10)
 
 b1.grid(row=0,column=0,sticky=W+E+N+S)
 b2.grid(row=0,column=2,sticky=W+E+N+S)
