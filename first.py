@@ -22,11 +22,11 @@ def baar(a,bar):
 #........FOR SUBMITTING ENTRIES........#
 
 def enter(nameHub,root_1,top_frame,bottom_frame,bar,entry_name,entry_enroll,entry_mob,entry_email,entry_branch):
-	a=str(entry_name.get())
-	b=str(entry_enroll.get())
-	c=str(entry_mob.get())
-	d=str(entry_email.get())
-	e=str(entry_branch.get())
+	#a=str(entry_name.get())
+	#b=str(entry_enroll.get())
+	#c=str(entry_mob.get())
+	#d=str(entry_email.get())
+	#e=str(entry_branch.get())
 	if nameHub=='IEEE':
 		loc = ('IEEE.xls')
 	elif nameHub=='CICE':
@@ -34,7 +34,7 @@ def enter(nameHub,root_1,top_frame,bottom_frame,bar,entry_name,entry_enroll,entr
 	elif nameHub=='UCR':
 		loc = ('UCR.xls')
 	elif nameHub=='Thespian Cirlce':
-		loc = ('Thespian Circle')
+		loc = ('Thespian Circle.xls')
 	elif nameHub=='Graphicas':
 		loc = ('Graphicas.xls')
 	else:
@@ -45,11 +45,11 @@ def enter(nameHub,root_1,top_frame,bottom_frame,bar,entry_name,entry_enroll,entr
 	count = sheet.nrows
 	wb = copy(rb)
 	w_sheet = wb.get_sheet(0)
-	w_sheet.write(count,0,a)
-	w_sheet.write(count,1,b)
-	w_sheet.write(count,2,c)
-	w_sheet.write(count,3,d)
-	w_sheet.write(count,4,e)
+	w_sheet.write(count,0,entry_name.get())
+	w_sheet.write(count,1,entry_enroll.get())
+	w_sheet.write(count,2,entry_mob.get())
+	w_sheet.write(count,3,entry_email.get())
+	w_sheet.write(count,4,entry_branch.get())
 	if nameHub=='IEEE':
 		loc = ('IEEE.xls')
 		hub = 'IEEE.xls'
@@ -61,7 +61,7 @@ def enter(nameHub,root_1,top_frame,bottom_frame,bar,entry_name,entry_enroll,entr
 		hub = 'UCR.xls'
 	elif nameHub=='Thespian Cirlce':
 		loc = ('Thespian Circle')
-		hub = 'Thespian.xls'
+		hub = 'Thespian Cirlce.xls'
 	elif nameHub=='Graphicas':
 		loc = ('Graphicas.xls')
 		hub = 'Graphicas.xls'
@@ -70,7 +70,7 @@ def enter(nameHub,root_1,top_frame,bottom_frame,bar,entry_name,entry_enroll,entr
 		hub = 'Knuth.xls'
 	wb.save(hub)
 	baar(bottom_frame,bar)
-	recur(a,root_1,top_frame,bottom_frame)
+	recur(nameHub,root_1,top_frame,bottom_frame)
 
 #..........FOR RESET BUTTON.........#
 def recur(a,root_1,top_frame,bottom_frame):
@@ -98,10 +98,16 @@ def recur(a,root_1,top_frame,bottom_frame):
 	entry_email.grid(row=6,column=1)
 	entry_branch.grid(row=8,column=1)
 
+	#name_1 = entry_name.get()
+	#enroll_1 = entry_enroll.get()
+	#mob_1 = entry_mob.get()
+	#email_1 = entry_email.get()
+	#branch_1 = entry_branch.get()
+
 	style = ttk.Style()
 	style.theme_use('default')
 	style.configure("blue.Horizontal.TProgressbar", background='blue')
-	bar = Progressbar(bottom_frame, length=100, style='blue.Horizontal.TProgressbar')
+	bar = Progressbar(bottom_frame, length=100, mode = 'determinate')
 
 	submit_button = Button(bottom_frame,text="SUBMIT", fg="blue",command=lambda: enter(a,root_1,top_frame,bottom_frame,bar,entry_name,entry_enroll,entry_mob,entry_email,entry_branch))
 	reset_button = Button(bottom_frame,text="RESET", fg="blue",command=lambda:recur(a,root_1,top_frame,bottom_frame))
@@ -150,17 +156,17 @@ def fun(a,root_first):
 	entry_email.grid(row=6,column=1)
 	entry_branch.grid(row=8,column=1)
 
-	name_1 = entry_name.get()
-	enroll_1 = entry_enroll.get()
-	mob_1 = entry_mob.get()
-	email_1 = entry_email.get()
-	branch_1 = entry_branch.get()
+	#name_1 = entry_name.get()
+	#enroll_1 = entry_enroll.get()
+	#mob_1 = entry_mob.get()
+	#email_1 = entry_email.get()
+	#branch_1 = entry_branch.get()
 
 	####>>>>>>BAR CODE<<<<<<####
 	style = ttk.Style()
 	style.theme_use('default')
 	style.configure("blue.Horizontal.TProgressbar", background='blue')
-	bar = Progressbar(bottom_frame, length=100, style='blue.Horizontal.TProgressbar')
+	bar = Progressbar(bottom_frame, length=100, mode = 'determinate')
 
 
 	submit_button = Button(bottom_frame,text="SUBMIT",command=lambda: enter(a,root_1,top_frame,bottom_frame,bar,entry_name,entry_enroll,entry_mob,entry_email,entry_branch),fg="blue")
