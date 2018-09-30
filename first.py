@@ -27,6 +27,7 @@ def enter(nameHub,root_1,top_frame,bottom_frame,bar,entry_name,entry_enroll,entr
 	#c=str(entry_mob.get())
 	#d=str(entry_email.get())
 	#e=str(entry_branch.get())
+   # allocating name of the selected hub to loc 
 	if nameHub=='IEEE':
 		loc = ('IEEE.xls')
 	elif nameHub=='CICE':
@@ -117,7 +118,7 @@ def recur(a,root_1,top_frame,bottom_frame):
 
 	bar.grid(row=11,columnspan=2)
 
-#...............MAIN WINDOW................#
+#...............MAIN GUI WINDOW................#
 
 def fun(a,root_first):
 	root_first.destroy()
@@ -259,7 +260,7 @@ def search(a,root_first):
 	enter.grid(row=0,column=1)
 	buttonSearch.grid(row=1,column=1,sticky="W")
 
-#.........SECOND WINDOW.........#
+#.........SECOND GUI WINDOW.........#
 def first(a):
 	root.destroy()
 	root_first = Tk()
@@ -296,7 +297,7 @@ bottomFrame.pack()
 label = Label(topFrame,text="JAYPEE INSTITUTE OF INFORMATION TECHNOLOGY",font=("Courier", 36),fg="Blue",bg="White")
 label.pack()
 
-#Pic
+#Picture
 photo = PhotoImage(file="download.png")
 label1 = Label(topFrame, image=photo,justify=LEFT)
 label1.pack()
