@@ -11,6 +11,7 @@ from tkinter.ttk import Progressbar
 from tkinter import ttk
 
 #.......MOVING BAR........#
+#moving bar
 
 def baar(a,bar):
 	for i in range(0,101,10):
