@@ -1,6 +1,7 @@
 #gui functionality of the project
 from tkinter import *
 root = Tk()
+#this project is about opening a python file.
 #home of the application 
 var = StringVar()
 #defining objects of the required tkinter classes
