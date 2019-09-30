@@ -12,4 +12,6 @@ Easy code and you can understand easily.
 
 Feel free to contribute and creating issues!
 
+Get easy and pro tips about open source.
+
 @anubhavsinha98
