@@ -22,4 +22,6 @@ Get easy and pro tips about open source.
 
 For setup just fork the repo and install the modules (tkinter, xlrt, xlwt)
 
-And then run
+And then run open.py
+
+```python3 open.py```
